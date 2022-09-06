@@ -20,36 +20,36 @@ namespace QPSOptimiser{
     public:
         Particle *pParticle;
         double *pGlobalBest;
-        int swarmSize;
+        int swarmSize_;
         int dim;
         int totalIterations;
         double (*evaluateFunc)(double *pos, int dim);
 
-        Swarm(int number, int dimensions, double (*evaluateFunc_) (double* pos, int dim)){
-            swarmSize = number;
+        Swarm(int swarmSize, int dimensions, double (*evaluateFunc_) (double* pos, int dim)){
+            swarmSize_ = swarmSize;
             dim = dimensions;
 
             pGlobalBest = new double[dimensions];
 
-            pParticle = new Particle[number];
+            pParticle = new Particle[swarmSize];
 
-            for(int i=0;i<number;i++){
+            for(int i=0;i<swarmSize;i++){
                 pParticle[i].init(dim);
             }
 
             initialise(*evaluateFunc_);
         }
 
-        void print_results(bool showArguments = true){
+        void printResults(bool showArguments = true){
 
             if (showArguments)
             {
                 for(int i=0; i<dim; i++){
-                    cout << "Argument #" + std::to_string(i) + " is equal to " <<pGlobalBest[i] << "\n";
+                    cout << "Argument #" + std::to_string(i) + " is equal to " << pGlobalBest[i] << "\n";
                 }
             }
 
-            cout << "Swarm size: " << swarmSize << "\n";
+            cout << "Swarm size: " << swarmSize_ << "\n";
             cout << "Total iterations: " << totalIterations << "\n";
             cout << "Global Best: " << evaluateFunc(pGlobalBest, dim) << "\n";
         }
@@ -70,7 +70,7 @@ namespace QPSOptimiser{
                 double c1 = ((double)iter / totalIters);
                 double c2 = 1.0 - ((double)iter / totalIters);
 
-                for(int i=0; i<swarmSize; i++){
+                for(int i=0; i<swarmSize_; i++){
                     
                     for(int j=0; j<dim; j++){
 
@@ -113,15 +113,12 @@ namespace QPSOptimiser{
         void initialise(double (*evaluateFunc_) (double* pos, int dim))
         {
             evaluateFunc=evaluateFunc_;
-
-            double upper = 1.0;
-            double lower = 0.0;
             
             for(int j=0;j<dim;j++){
                 pGlobalBest[j] = getRandom();
             }
 
-            for(int i=0; i<swarmSize; i++){
+            for(int i=0; i<swarmSize_; i++){
                 for(int j=0; j<dim; j++){
                     pParticle[i].pPosition[j] = getRandom();
                     pParticle[i].plocalBest[j] = pParticle[i].pPosition[j];

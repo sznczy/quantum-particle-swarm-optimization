@@ -72,32 +72,32 @@ double goldsteinPriceBenchmarkFunc(double* pos, int dim){
 
 void runSchwefelTesting(){
 
-    cout << "Schwefel function bechmarking" << "\n";
+    cout << "Schwefel function benchmarking" << "\n";
 
     QPSOptimiser::Swarm testSwarm(200, 30, schwefelBenchmarkFunc);
 
     testSwarm.solve(2000);
-    testSwarm.print_results(false);
+    testSwarm.printResults(false);
 
 }
 
 void runGriewankTesting(){
 
-    cout << "Griewank function bechmarking" << "\n";
+    cout << "Griewank function benchmarking" << "\n";
 
-    QPSOptimiser::Swarm test_swarm(200, 30, griewankBenchmarkFunc);
+    QPSOptimiser::Swarm testSwarm(200, 30, griewankBenchmarkFunc);
 
-    test_swarm.solve(1000);
-    test_swarm.print_results(false);
+    testSwarm.solve(1000);
+    testSwarm.printResults(false);
 }
 
 void runGoldsteinPriceTest(){
 
-    cout << "Goldstein price function bechmarking" << "\n";
+    cout << "Goldstein price function benchmarking" << "\n";
 
-    QPSOptimiser::Swarm test_swarm(300, 30, goldsteinPriceBenchmarkFunc);
-    test_swarm.solve(1000);
-    test_swarm.print_results(false);
+    QPSOptimiser::Swarm testSwarm(300, 30, goldsteinPriceBenchmarkFunc);
+    testSwarm.solve(1000);
+    testSwarm.printResults(false);
 
 }
 
