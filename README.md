@@ -73,7 +73,7 @@ testSwarm.print_results(true); // If argument is True, then it will show the cal
 
 Want to contribute? Great!
 
-Please send a message to me and we can discuss.
+Please send a message to [Roland Szenczi](mailto:szenczi@proton.me?subject=[GitHub]%20Source%20QPSO) and we can discuss.
 
 ## License
 
